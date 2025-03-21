@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Cultivos Acuapónicos</title>
+
+    <!-- Estilos de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #2e7d32, #388e3c); /* Verde más oscuro */
+            min-height: 100vh; /* Ocupa toda la pantalla */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .login-container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .welcome-message {
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .login-header {
+            text-align: center;
+            color: #2e7d32; /* Verde oscuro */
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .btn-custom {
+            background-color: #2e7d32; /* Verde oscuro */
+            color: white;
+            border-radius: 12px;
+        }
+
+        .btn-custom:hover {
+            background-color: #1b5e20; /* Verde más oscuro */
+        }
+
+        .error-message {
+            color: #d32f2f;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <center>
+
+    <div>
+        <!-- Mensaje de bienvenida -->
+        <div class="welcome-message">
+             Bienvenido al Sistema Acuapónico 
+        </div>
+
+        <div class="login-container ">
+            <h2 class="login-header">🔒 Iniciar Sesión</h2>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario:</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    {{ form.password }}
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-custom">Ingresar</button>
+                </div>
+            </form>
+
+            {% if form.errors %}
+                <p class="error-message">❌ Usuario o contraseña incorrectos.</p>
+            {% endif %}
+        </div>
+    </div>
+  </center>
+    <!-- Scripts de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
