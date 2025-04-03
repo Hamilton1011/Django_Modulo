@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Cultivos</title>
+    <title>Lista de Especies</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -12,15 +12,14 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
-            <a class="navbar-brand" href="#">Cultivos Acuapónicos</a>
+            <a class="navbar-brand" href="#">Registro de Especies</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto"> <!-- ms-auto empuja a la derecha -->
-                   
+                <ul class="navbar-nav ms-auto"> 
                     {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
@@ -36,43 +35,39 @@
     </nav>
 
     <div class="container mt-4">
-        <h1 class="text-center text-success">Registro de Siembra de Cultivos</h1>
+        <h1 class="text-center text-success">Registro de Especies</h1>
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-center">
                 <thead class="table-success">
                     <tr>
                         <th>ID</th>
                         <th>Fecha</th>
-                        <th>Tipo</th>
-                        <th>Cantidad</th>
-                        <th>Lote</th>
-                        <th>Estado</th>
+                        <th>Categoría</th>
+                        <th>Nombre Científico</th>
+                        <th>Nombre Común</th>
+                        <th>Ciclo de Vida</th>
+                        <th>Temperatura Óptima</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for registro in registro %}
+                    {% for especie in especies %}
                         <tr>
-                            <td>{{ registro.id }}</td>
-                            <td>{{ registro.fecha|date:"d/m/Y H:i" }}</td>
-                            <td>{{ registro.tipo }}</td>
-                            <td>{{ registro.cantidad }}</td>
-                            <td>{{ registro.lote }}</td>
+                            <td>{{ especie.id }}</td>
+                            <td>{{ especie.fecha|date:"d/m/Y H:i" }}</td>
+                            <td>{{ especie.categoria.nombre }}</td>
+                            <td>{{ especie.nombre_cientifico }}</td>
+                            <td>{{ especie.nombre_comun }}</td>
+                            <td>{{ especie.ciclo_vida }}</td>
+                            <td>{{ especie.temperatura_optima }}</td>
                             <td>
-                                {% if registro.estado %}
-                                    <span class="badge bg-success">Cultivo Sembrado</span>
-                                {% else %}
-                                    <span class="badge bg-warning text-dark">Cosechado</span>
-                                {% endif %}
-                            </td>
-                            <td>
-                                <a href="{% url 'registros_editar' registro.id %}" class="btn btn-success btn-sm">Editar</a>
-                                <a href="{% url 'registros_eliminar' registro.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                                <a href="{% url 'especies_editar' especie.id %}" class="btn btn-success btn-sm">Editar</a>
+                                <a href="{% url 'especies_eliminar' especie.id %}" class="btn btn-danger btn-sm">Eliminar</a>
                             </td>
                         </tr>
                     {% empty %}
                         <tr>
-                            <td colspan="7" class="text-center">No hay cultivos registrados</td>
+                            <td colspan="8" class="text-center">No hay especies registradas</td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -80,7 +75,7 @@
         </div>
 
         <div class="text-center mt-3">
-            <a href="{% url 'registros_crear' %}" class="btn btn-success">Registrar Cultivo Nuevo</a>
+            <a href="{% url 'especies_crear' %}" class="btn btn-success">Registrar Nueva Especie</a>
         </div>
     </div>
 

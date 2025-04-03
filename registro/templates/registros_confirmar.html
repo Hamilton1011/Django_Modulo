@@ -18,7 +18,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'registros_lista' %}">Cultivos Acuapónicos</a>
+            <a class="navbar-brand" href="{% url 'especies_lista' %}">Cultivos Acuapónicos</a>
         </div>
     </nav>
     <div class="container">
@@ -29,7 +29,7 @@
             <form method="post" class="text-center">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Sí, Eliminar</button>
-                <a href="{% url 'registros_lista' %}" class="btn btn-secondary">Cancelar</a>
+                <a href="{% url 'especies_lista' %}" class="btn btn-secondary">Cancelar</a>
             </form>
         </div>
     </div>
