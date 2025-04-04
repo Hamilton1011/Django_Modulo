@@ -24,7 +24,7 @@
     <div class="container">
         <div class="card shadow form-container">
             <h2 class="text-center text-danger"> Confirmar Eliminación</h2>
-            <p class="text-center">¿Estás seguro de que deseas eliminar el cultivo <strong>"{{ registro.tipo }}"</strong>?</p>
+            <p class="text-center">¿Estás seguro de que deseas eliminar el cultivo <strong>"{{ registro.nombre_comun }}"</strong>?</p>
 
             <form method="post" class="text-center">
                 {% csrf_token %}

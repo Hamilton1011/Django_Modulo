@@ -12,7 +12,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
-            <a class="navbar-brand" href="#">Registro de Especies</a>
+            <a class="navbar-brand" href="{% url 'dashboard' %}">Dashboard</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -20,6 +20,9 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto"> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'categorias_lista' %}">Gestion categorias</a>
+                    </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
@@ -47,12 +50,13 @@
                         <th>Nombre Común</th>
                         <th>Ciclo de Vida</th>
                         <th>Temperatura Óptima</th>
-                        <th>Acciones</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for especie in especies %}
-                        <tr>
+                        <td>
                             <td>{{ especie.id }}</td>
                             <td>{{ especie.fecha|date:"d/m/Y H:i" }}</td>
                             <td>{{ especie.categoria.nombre }}</td>
@@ -60,10 +64,9 @@
                             <td>{{ especie.nombre_comun }}</td>
                             <td>{{ especie.ciclo_vida }}</td>
                             <td>{{ especie.temperatura_optima }}</td>
-                            <td>
-                                <a href="{% url 'especies_editar' especie.id %}" class="btn btn-success btn-sm">Editar</a>
-                                <a href="{% url 'especies_eliminar' especie.id %}" class="btn btn-danger btn-sm">Eliminar</a>
-                            </td>
+                            <td><a href="{% url 'especies_editar' especie.id %}" class="btn btn-success btn-sm">Editar</a> </td>
+                            <td><a href="{% url 'especies_eliminar' especie.id %}" class="btn btn-danger btn-sm">Eliminar</a> </td>
+                            
                         </tr>
                     {% empty %}
                         <tr>

@@ -82,7 +82,7 @@ DATABASES = {
         'USER':'root',
         'PASSWORD':'',
         'HOST':'localhost',
-        'PORT': 3306,
+        'PORT': 3320,
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         },
@@ -117,11 +117,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -135,7 +135,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redirige al inicio después del login
-LOGIN_REDIRECT_URL = '/registro/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 
 # Redirige al login después del logout
 LOGOUT_REDIRECT_URL = '/login/'
